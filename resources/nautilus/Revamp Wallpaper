@@ -1,0 +1,72 @@
+#!/usr/bin/env python3.6
+
+'''
+A Nautilus script to change the wallpaper of the Desktop and Lock-screen (and
+Unlock-screen if /usr/share/gnome-shell/theme/ubuntu.css --> #lockDialogGroup
+--> background is not using noise-texture.png) in Ubuntu 18.04. Wallpaper in
+Lock-screen (and Unlock-screen) will be a blurred image of the Desktop wallpaper.
+
+Installation:
+1. Paste this script in ~/.local/share/nautilus/scripts
+2. Give it permission to be executable.
+
+How to use this script?
+1. In nautilus, put mouse pointer over image file and right click it.
+2. Select "Scripts" --> "Revamp Wallpaper"
+
+Author     : sunbear.c22@gmail.com
+Created on : 20th Sep 2019
+'''
+
+from os import environ
+from pathlib import Path
+from shutil import copy2
+from subprocess import run
+import imghdr
+
+
+def show_fail_notification( name ):
+    run(['notify-send', 'Revamp Wallpaper',
+         f'{name} can\'t be used as wallpaper.'])
+
+
+def show_completion_notification( name ):
+    run(['notify-send', '-i', 'face-wink', 'Revamp Wallpaper',
+         f'Enjoy your {name} wallpaper.'])
+
+
+#1. Extract file path
+files = environ['NAUTILUS_SCRIPT_SELECTED_FILE_PATHS'].splitlines()
+for x in files:
+    file = Path(x)
+
+#2. Check whether file is suitable to be a wallpaper
+filetype = imghdr.what(file)
+if filetype not in ['jpeg','png', 'tiff', 'gif' ] or file.is_dir():
+    show_fail_notification( file.name )
+    exit()
+    
+#3. Create local background directory
+BACKGROUNDS = Path.home()/'.local'/'share'/'backgrounds'
+if not BACKGROUNDS.exists() and not BACKGROUNDS.is_dir():
+    BACKGROUNDS.mkdir(mode=0o777, parents=True, exist_ok=False)
+
+#4. Assign image to be Desktop wallpaper
+wallpaper = BACKGROUNDS/'wallpaper.jpg'
+copy2( file, wallpaper )
+run( f'gsettings set org.gnome.desktop.background picture-uri {wallpaper.as_uri()}',
+     shell=True )
+
+#5. Blur image and assign blurred image to be GDM Lock-Screen wallpaper
+lockscreen = BACKGROUNDS/'lockscreen.jpg'
+run( ['convert', '-resize', '1440', '-quality', '100', '-brightness-contrast',
+      '-10x-15', '-blur', '0x30', file, lockscreen] )
+run( f'gsettings set org.gnome.desktop.screensaver picture-uri {lockscreen.as_uri()}',
+     shell=True )
+
+#6. Show Completion notification
+show_completion_notification( file.name )
+
+    
+        
+
