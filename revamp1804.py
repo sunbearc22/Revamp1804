@@ -1,17 +1,32 @@
 #!/usr/bin/env python3.6
 # -*- coding: utf-8 -*-
 '''
-Program to implement a MACish desktop look and feel to Ubuntu 18.04.
+Program to give Ubuntu 18.04 a Sierra-light-ish desktop look and feel..
 
-  To implement:
+To implement:
   $ python3.6 revamp1804.py --install
-
-  To remove:
+To undo ( i.e. revert back to a fresh Ubuntu 18.04 look and feel ):
   $ python3.6 revamp1804.py --remove
+Note: This program will access Administration privilege during execution.
 
-  Note: This program will access Administration privilege during execution.
-
-See function show_intro() for an overview of this program.
+Tasks:
+  (a) Install certain \'deb\' packages (and ppa) into Ubuntu 18.04. 
+  (b) Install and enable themes and extensions:
+      Themes :-
+        Apps  - McHigh Sierra
+        Icons - Cupertino iCons Collection
+        Cursor- MacOS MOD
+        Fonts - SanFranciscoFont, macfonts
+        GDM   - Revamp1804 (adapted from High Ubunterra*
+                * https://www.gnome-look.org/p/1207015/ High Ubunterra.
+      Extensions:-
+        Always Zoom Workspaces, Arc Menu, Blyr, Dash to Dock,
+        Dynamic Panel Transparency, EasyScreenCast, Log Out Button, NetSpeed,
+        Removable Drive Menu, Screenshot Tool, Suspend Button, User Themes,
+        Workspace Indicator
+  (c) Customize the settings of these applications, extensions and more.
+  (d) Install a nautilus script to allow an easy change of the desktop and
+      screensaver wallpapers.
 '''
 import argparse
 import getpass
@@ -128,7 +143,7 @@ def _fonts_url2():
     return [ macfonts ]
 
 
-def show_intro():
+def show_header():
     print()
     print( f'             @@@@@@  @@@@@@@ @       @    @       @       @ @@@@@@')
     print( f'             @     @ @        @     @    @ @      @@     @@ @     @')
@@ -137,34 +152,13 @@ def show_intro():
     print( f'             @   @   @         @   @  @ @@@@@ @   @   @   @ @')
     print( f'             @    @  @          @ @  @         @  @       @ @')
     print( f'             @     @ @@@@@@@     @  @           @ @       @ @\n')
-    print( f'          Giving Ubuntu 18.04 a Sierra-light-ish desktop look and feel.' )
-    print( f'\n  Tasks:\n' )
-    print( f'  (a) Install relevant \'deb\' packages to Ubuntu 18.04.\n' )
-    print( f'  (b) Install relevant GNOME themes, GNOME extensions and fonts:' )
-    print( f'      Themes :-' )    
-    print( f'       Apps  - https://www.gnome-look.org/p/1013714/   McHigh Sierra' )
-    print( f'       Icons - https://www.gnome-look.org/p/1102582/   Cupertino iCons Collection' ) 
-    print( f'       Cursor- https://www.gnome-look.org/p/1241071/   MacOS MOD' ) 
-    print( f'       GDM   - revamp1804.css (adapted from High Ubunterra* and McHigh Sierra)' )
-    print( f'               * https://www.gnome-look.org/p/1207015/ High Ubunterra. ' )
-    print( f'\n      Extensions:-' )
-    print( f'       - https://extensions.gnome.org/extension/503/always-zoom-workspaces/' )
-    print( f'       - https://extensions.gnome.org/extension/1228/arc-menu/' )
-    print( f'       - https://extensions.gnome.org/extension/1251/blyr/' )
-    print( f'       - https://extensions.gnome.org/extension/307/dash-to-dock/' )
-    print( f'       - https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/' )
-    print( f'       - https://extensions.gnome.org/extension/690/easyscreencast/' )
-    print( f'       - https://extensions.gnome.org/extension/1143/logout-button/' )
-    print( f'       - https://extensions.gnome.org/extension/7/removable-drive-menu/' )
-    print( f'       - https://extensions.gnome.org/extension/104/netspeed/' )
-    print( f'       - https://extensions.gnome.org/extension/1112/screenshot-tool/' )
-    print( f'       - https://extensions.gnome.org/extension/826/suspend-button/' )
-    print( f'       - https://extensions.gnome.org/extension/19/user-themes/' )
-    print( f'       - https://extensions.gnome.org/extension/21/workspace-indicator/' )
-    print( f'  (c) Customised applications and extensions Gsettings values.\n' )
-    border = f'================================================================================'
+    print( f'          Giving Ubuntu 18.04 a Sierra-light-ish desktop look and feel.\n' )
+    print( f'================================================================================\n')
+
+
+def show_intro():
+    show_header()
     check_system_platform_and_Ubuntu_distribution()
-    print( border )
     print( f'\nUser : {USERNAME}' )
     print( f'Linux Distro : { " ".join(DISTRO.values()) }\n' )
     time.sleep(1)
@@ -699,7 +693,7 @@ def configure_nautilus():
 
 def install_nautilus_script_Revamp_Wallpaper():
     print( '\n Installing nautilus script "Revamp Wallpaper" ...' )
-    src = INSTALLER_DIR / Path('_resources/nautilus/Revamp Wallpaper')
+    src = INSTALLER_DIR / Path('resources/nautilus/Revamp Wallpaper')
     dst = HOME / Path('.local/share/nautilus/scripts/Revamp Wallpaper')
     copy2( src, dst )
     dst.chmod(0o771)    
@@ -709,7 +703,7 @@ def install_nautilus_script_Revamp_Wallpaper():
 def configure_Desktop_and_Lockscreen_Wallpaper():
     print( '\nConfiguring Desktop Wallpaper and Screensaver...' )
     #1. Unzip and extractall images to BACKGROUNDS
-    with ZipFile( INSTALLER_DIR / Path('_resources/backgrounds/Sierra-wallpapers.zip' ), 'r' ) as zfile:
+    with ZipFile( INSTALLER_DIR / Path('resources/backgrounds/Sierra-wallpapers.zip' ), 'r' ) as zfile:
        zfile.extractall( BACKGROUNDS )
 
     #2. Configure desktop wallpaper
@@ -726,7 +720,7 @@ def configure_Desktop_and_Lockscreen_Wallpaper():
     gsettings_set( 'org.gnome.desktop.screensaver', [ ['picture-uri', f'\'{lockscreen.as_uri()}\''] ] )
 
     #4. Allow GNOME Wallpaper Picker access to "wallpaper" and "lockscreen"
-    src = INSTALLER_DIR/ Path('_resources/gnome-background-properties/revamp-wallpapers.xml')
+    src = INSTALLER_DIR/ Path('resources/gnome-background-properties/revamp-wallpapers.xml')
     xml = GBACKGROUNDS_PROPERTIES/'revamp-wallpapers.xml'
     copy2( src, xml )
     print( 'Configuring Desktop Wallpaper and Screensaver... Done.' )
@@ -735,7 +729,7 @@ def configure_Desktop_and_Lockscreen_Wallpaper():
 def configure_GDM():
     print( '\nConfiguring GNOME Display Manager (GDM) ...' )
     #1. Install revamp1804.css and its files
-    installer_css = INSTALLER_DIR / Path('_resources/gnome-shell_theme/Revamp1804/revamp1804.css')
+    installer_css = INSTALLER_DIR / Path('resources/gnome-shell_theme/Revamp1804/revamp1804.css')
     print( f'installer_css = {installer_css}' )
     run( [ 'sudo', 'python3.6', str( INSTALLER_DIR / 'gdm3css.py' ),
            '--install', str( installer_css ) ] )
@@ -761,7 +755,7 @@ def reset_Desktop_and_Lockscreen_Wallpaper():
     print( '\n  Resetting Desktop Wallpaper and Screensaver...' )
     #1. Reset desktop wallpaper
     warty = Path( '/usr/share/backgrounds/warty-final-ubuntu.png' )
-    warty_src = INSTALLER_DIR /  Path( '_resources/backgrounds/warty-final-ubuntu.png' )
+    warty_src = INSTALLER_DIR /  Path( 'resources/backgrounds/warty-final-ubuntu.png' )
     warty_dst = BACKGROUNDS / 'warty-final-ubuntu.png'
     if not warty.exists():
         copy2( warty_src, warty_dst )
@@ -773,7 +767,7 @@ def reset_Desktop_and_Lockscreen_Wallpaper():
 
     #2. Reset screensaver wallpaper, i.e. GDM lockscreen
     wartygrey = Path( '/usr/share/backgrounds/Beaver_Wallpaper_Grey_4096x2304.png' )
-    wartygrey_src = INSTALLER_DIR /  Path( '_resources/backgrounds/Beaver_Wallpaper_Grey_4096x2304.png' )
+    wartygrey_src = INSTALLER_DIR /  Path( 'resources/backgrounds/Beaver_Wallpaper_Grey_4096x2304.png' )
     wartygrey_dst = BACKGROUNDS / 'Beaver_Wallpaper_Grey_4096x2304.png'
     if not wartygrey.exists():
         copy2( wartygrey_src, wartygrey_dst )
@@ -783,7 +777,7 @@ def reset_Desktop_and_Lockscreen_Wallpaper():
     gsettings_set( 'org.gnome.desktop.screensaver', [ ['picture-uri', f'\'{lockscreen.as_uri()}\''] ] )
 
     #3. Allow GNOME Wallpaper Picker access to "wallpaper" and "lockscreen"
-    src = INSTALLER_DIR/ Path('_resources/gnome-background-properties/ubuntu-wallpapers.xml')
+    src = INSTALLER_DIR/ Path('resources/gnome-background-properties/ubuntu-wallpapers.xml')
     xml = GBACKGROUNDS_PROPERTIES/'ubuntu-wallpapers.xml'
     copy2( src, xml )
 
@@ -1113,7 +1107,7 @@ def install():
     restart_gnome_shell()
     
 
-def uninstall():
+def remove():
     show_intro()
     show_remove_statement()
     reset_GDM()
@@ -1141,21 +1135,21 @@ def main():
 
     #2. Define arguement
     parser.add_argument( '--install', action='store_true', help='toggles the installation of Revamp 18.04.' )
-    parser.add_argument( '--uninstall', action='store_true', help='toggles the removal of Revamp 18.04.' )
+    parser.add_argument( '--remove', action='store_true', help='toggles the removal of Revamp 18.04.' )
     
     #3. Get the arguements
     args = parser.parse_args()
     #print( f'args.install = {args.install}' )#for debugging
-    #print( f'args.uninstall  = {args.uninstall}' ) #for debugging
+    #print( f'args.remove  = {args.remove}' ) #for debugging
 
     #4. Set up the permissible operations from cmdline.
     if args.install:
         #print('INSTALL')
         #print( f'type(args.install) = {type(args.install)}' )
         install()
-    elif args.uninstall:
-        #print('UNINSTALL')
-        uninstall()
+    elif args.remove:
+        #print('REMOVED')
+        remove()
     else:
         parser.print_help()
         print( '\nPlease use command syntax.' )

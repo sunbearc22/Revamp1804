@@ -8,7 +8,7 @@ Optional Arguments of this Module:
 --install - path of the GDM CSS file that you want to install.
 --remove  - path of the GDM CSS file that you want to remove.. 
    
-Author      : https://github.com/sunbearc22
+Author      : sunbear.c22@gmail.com
 Created on  : 2019-10-12
 Modified on : 
 
@@ -302,7 +302,7 @@ class GDM3css:
         #1. Ensure /usr/share/gnome-shell/theme/ubuntu.css exist.
         installer_dir = Path().absolute()
         #print( f'installer_dir={installer_dir} {type(installer_dir)}' )  #For debugging
-        src = installer_dir / Path('_resources/original/ubuntu_theme/ubuntu.css')
+        src = installer_dir / Path('resources/original/ubuntu_theme/ubuntu.css')
         #print( f'src={src} {type(src)}' )  #For debugging
         ubuntu = Path( '/usr/share/gnome-shell/theme/ubuntu.css' )
         #print( f'ubuntu={ubuntu} {type(ubuntu)}' )  #For debugging
