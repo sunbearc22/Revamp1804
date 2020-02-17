@@ -6,9 +6,9 @@ Giving Ubuntu 18.04 a Sierra-light-ish desktop look and feel.
 
 ## Motivation:
 
-Beautifying the look and feel of a fresh install of Ubuntu 18.04 is definitely helpful. This revamping process can be time consuming. And to revamp multiple systems (or user accounts) becomes a nightmare. Also, using a fresh install of Ubuntu 18.04 does have it's quirks.
+Beautifying the look and feel of a freshly install of Ubuntu 18.04 system is definitely helpful. This "revamping" process is time consuming. Revamping multiple systems (or user accounts) does become nightmarish. Furthermore, using Ubuntu 18.04 with it's default settings does have it's quirks.
 
-This program automates this revamping process to consistently give Ubuntu 18.04 a Sierra-light-ish desktop look and feel with less fresh install Ubuntu 18.04 quirks. 
+This program attempts to automates this revamping process to consistently give Ubuntu 18.04 a nice Sierra-light-ish desktop look and feel, with less of the built-in Ubuntu 18.04 quirks. 
 
 
 
@@ -16,7 +16,7 @@ This program automates this revamping process to consistently give Ubuntu 18.04 
 
 This program does the following:
 
-1. Install certain 'deb' packages (and their ppa) into Ubuntu 18.04.
+1. Install certain 'deb' packages (and ppa) into Ubuntu 18.04.
 2. Install and enable themes and extensions:
    - Themes :  [McHigh Sierra](https://www.gnome-look.org/p/1013714/  ), [Cupertino iCons Collection](https://www.gnome-look.org/p/1102582/) , [MacOS MOD](https://www.gnome-look.org/p/1241071/), [SanFranciscoFont](https://codeload.github.com/AppleDesignResources/SanFranciscoFont/zip/master), [macfonts](http://drive.noobslab.com/data/Mac/macfonts.zip), [revamp1804.css](resources/gnome-shell_theme/Revamp1804/revamp1804.css) 
    - Extensions :  [Always Zoom Workspaces](https://extensions.gnome.org/extension/503/always-zoom-workspaces/), [Arc Menu](https://extensions.gnome.org/extension/1228/arc-menu/), [Blyr](https://extensions.gnome.org/extension/1251/blyr/), [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/), [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/), [EasyScreenCast](https://extensions.gnome.org/extension/690/easyscreencast/), [Log Out Button](https://extensions.gnome.org/extension/1143/logout-button/), [NetSpeed](https://extensions.gnome.org/extension/104/netspeed/), [Removable Drive Menu](https://extensions.gnome.org/extension/7/removable-drive-menu/), [Screenshot Tool](https://extensions.gnome.org/extension/1112/screenshot-tool/), [Suspend Button](https://extensions.gnome.org/extension/826/suspend-button/), [User Themes](https://extensions.gnome.org/extension/19/user-themes/), [Workspace Indicator](https://extensions.gnome.org/extension/21/workspace-indicator/)
@@ -35,11 +35,14 @@ This program does the following:
 
 ## How to Use?
 
-##### To revamp Ubuntu 18.04:
+##### First,  clone this repository:
+`$ git clone https://github.com/sunbearc22/Revamp1804.git <your local directory>`
+
+##### To revamp Ubuntu 18.04 :
 
 ​    `$ python3.6 revamp1804.py --install`
 
-##### To undo:
+##### To undo ( i.e. revert back to a fresh Ubuntu 18.04 look and feel ) :
 
 ​     `$ python3.6 revamp1804.py --remove`
 
@@ -54,45 +57,45 @@ This program does the following:
 
 ## The Revamp1804 Desktop
 
-![01a_unlockscreen](images/01a_unlockscreen.png)
+![01a_unlockscreen](documentation/images/01a_unlockscreen.png)
 
-![02a_unlockscreen_with_warning](images/02a_unlockscreen_with_warning.png)
+![02a_unlockscreen_with_warning](documentation/images/02a_unlockscreen_with_warning.png)
 
-![03a_desktop](images/03a_desktop.png)
+![03a_desktop](documentation/images/03a_desktop.png)
 
-![04a_desktop_with_01_Arc-menu](images/04a_desktop_with_01_Arc-menu.png)
+![04a_desktop_with_01_Arc-menu](documentation/images/04a_desktop_with_01_Arc-menu.png)
 
-![05a_desktop_with_02_calendar](images/05a_desktop_with_02_calendar.png)
+![05a_desktop_with_02_calendar](documentation/images/05a_desktop_with_02_calendar.png)
 
-![06a_desktop_with_03_removable-drive-menu](images/06a_desktop_with_03_removable-drive-menu.png)
+![06a_desktop_with_03_removable-drive-menu](documentation/images/06a_desktop_with_03_removable-drive-menu.png)
 
-![07a_desktop_with_04_workspace-indicator](images/07a_desktop_with_04_workspace-indicator.png)
+![07a_desktop_with_04_workspace-indicator](documentation/images/07a_desktop_with_04_workspace-indicator.png)
 
-![08a_desktop_with_05_easyscreencast](images/08a_desktop_with_05_easyscreencast.png)
+![08a_desktop_with_05_easyscreencast](documentation/images/08a_desktop_with_05_easyscreencast.png)
 
-![09a_desktop_with_06_screenshot-tool](images/09a_desktop_with_06_screenshot-tool.png)
+![09a_desktop_with_06_screenshot-tool](documentation/images/09a_desktop_with_06_screenshot-tool.png)
 
-![10a_desktop_with_07_netspeed](images/10a_desktop_with_07_netspeed.png)
+![10a_desktop_with_07_netspeed](documentation/images/10a_desktop_with_07_netspeed.png)
 
-![11a_desktop_with_08_LogOutButton](images/11a_desktop_with_08_LogOutButton.png)
+![11a_desktop_with_08_LogOutButton](documentation/images/11a_desktop_with_08_LogOutButton.png)
 
-![12a_desktop_with_09_suspend-button](images/12a_desktop_with_09_suspend-button.png)
+![12a_desktop_with_09_suspend-button](documentation/images/12a_desktop_with_09_suspend-button.png)
 
-![13a_desktop_with_10_dash-to-dock_app_windows_preview](images/13a_desktop_with_10_dash-to-dock_app_windows_preview.png)
+![13a_desktop_with_10_dash-to-dock_app_windows_preview](documentation/images/13a_desktop_with_10_dash-to-dock_app_windows_preview.png)
 
-![14a_gnome-terminal](images/14a_gnome-terminal.png)
+![14a_gnome-terminal](documentation/images/14a_gnome-terminal.png)
 
-![15a_Activies_overview](images/15a_Activies_overview.png)
+![15a_Activies_overview](documentation/images/15a_Activies_overview.png)
 
-![16a_applications](images/16a_applications.png)
+![16a_applications](documentation/images/16a_applications.png)
 
-![17a_lockscreen](images/17a_lockscreen.png)
+![17a_lockscreen](documentation/images/17a_lockscreen.png)
 
-![18a_lockscreen_with_notifications](images/18a_lockscreen_with_notifications.png)
+![18a_lockscreen_with_notifications](documentation/images/18a_lockscreen_with_notifications.png)
 
 ##### In the desktop environment, you can change the wallpaper of your desktop and screensaver anytime. Simply do these steps: 
 
 1. Put your mouse pointer over image file and right click it.
 2. Select "Scripts" --> left or right click on "Revamp Wallpaper"
 
-<video src="video/RevampWallpaper_v2.webm"></video>
+<video src="documentation/video/RevampWallpaper_v2.webm"></video>
