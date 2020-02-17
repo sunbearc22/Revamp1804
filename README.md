@@ -45,7 +45,7 @@ Next, change to your local Revamp1804 directory and issue the below command(s).
 
   `$ python3.6 revamp1804.py --install`
 
-- **To undo ( i.e. revert back to a fresh Ubuntu 18.04 look and feel ) **:
+- **To undo ( i.e. revert back to a fresh Ubuntu 18.04 look and feel )**:
 
 ​      `$ python3.6 revamp1804.py --remove`
 
