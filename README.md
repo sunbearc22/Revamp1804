@@ -6,7 +6,7 @@ Giving Ubuntu 18.04 a Sierra-light-ish desktop look and feel.
 
 ## Motivation:
 
-Beautifying the look and feel of a freshly install of Ubuntu 18.04 system is definitely helpful. This "revamping" process is time consuming. Revamping multiple systems (or user accounts) does become nightmarish. Furthermore, using Ubuntu 18.04 with it's default settings does have it's quirks.
+Improving the look and feel of a freshly install of Ubuntu 18.04 system is definitely helpful. This "revamping" process can be time consuming. Revamping multiple systems (or user accounts) does become nightmarish. Furthermore, using Ubuntu 18.04 with it's default settings does have it's quirks.
 
 This program attempts to automates this revamping process to consistently give Ubuntu 18.04 a nice Sierra-light-ish desktop look and feel, with less of the built-in Ubuntu 18.04 quirks. 
 
@@ -20,7 +20,7 @@ This program does the following:
 2. Install and enable themes and extensions:
    - Themes :  [McHigh Sierra](https://www.gnome-look.org/p/1013714/  ), [Cupertino iCons Collection](https://www.gnome-look.org/p/1102582/) , [MacOS MOD](https://www.gnome-look.org/p/1241071/), [SanFranciscoFont](https://codeload.github.com/AppleDesignResources/SanFranciscoFont/zip/master), [macfonts](http://drive.noobslab.com/data/Mac/macfonts.zip), [revamp1804.css](resources/gnome-shell_theme/Revamp1804/revamp1804.css) 
    - Extensions :  [Always Zoom Workspaces](https://extensions.gnome.org/extension/503/always-zoom-workspaces/), [Arc Menu](https://extensions.gnome.org/extension/1228/arc-menu/), [Blyr](https://extensions.gnome.org/extension/1251/blyr/), [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/), [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/), [EasyScreenCast](https://extensions.gnome.org/extension/690/easyscreencast/), [Log Out Button](https://extensions.gnome.org/extension/1143/logout-button/), [NetSpeed](https://extensions.gnome.org/extension/104/netspeed/), [Removable Drive Menu](https://extensions.gnome.org/extension/7/removable-drive-menu/), [Screenshot Tool](https://extensions.gnome.org/extension/1112/screenshot-tool/), [Suspend Button](https://extensions.gnome.org/extension/826/suspend-button/), [User Themes](https://extensions.gnome.org/extension/19/user-themes/), [Workspace Indicator](https://extensions.gnome.org/extension/21/workspace-indicator/)
-3.  Customize certain Gsettings values.
+3. Customize certain applications and extensions settings.
 4. Install a nautilus script to allow an easy change of the desktop and screensaver wallpapers.  
 
 
