@@ -137,7 +137,7 @@ def show_intro():
     print( f'             @   @   @         @   @  @ @@@@@ @   @   @   @ @')
     print( f'             @    @  @          @ @  @         @  @       @ @')
     print( f'             @     @ @@@@@@@     @  @           @ @       @ @\n')
-    print( f'           Implement a MACish desktop look and feel to Ubuntu 18.04.' )
+    print( f'          Giving Ubuntu 18.04 a Sierra-light-ish desktop look and feel.' )
     print( f'\n  Tasks:\n' )
     print( f'  (a) Install relevant \'deb\' packages to Ubuntu 18.04.\n' )
     print( f'  (b) Install relevant GNOME themes, GNOME extensions and fonts:' )
